@@ -1,0 +1,58 @@
+* {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    height: 680px;
+    display: flex;
+    flex-direction: column;   
+}
+
+.header {
+    background-color: orange;
+    height: 30px;
+    padding: 20px;
+    display: flex;
+    flex-shrink: 0;   
+}
+
+.content {
+    height: 640px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer {
+    background-color: green;
+    padding: 10px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+}
+
+.panel {
+    background-color: red;
+    height: 600px;
+    width: 200px;
+    padding: 20px;
+    flex: 1 1 1;
+}
+
+.frame {
+    background-color: indianred;
+    height: 600px;
+    width: 750px;
+    padding: 20px;
+    flex: 1 1 1;
+}
+
+.canvas {
+    background-color: white;
+    height: 600px;
+}
