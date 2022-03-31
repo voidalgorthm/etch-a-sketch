@@ -1,5 +1,6 @@
 * {
     background-color: black;
+    color: white;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -37,22 +38,107 @@
 }
 
 .panel {
-    background-color: red;
+    border: 3px double darkblue;
     height: 600px;
     width: 200px;
     padding: 20px;
+    display: flex;
     flex: 1 1 1;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
+.button {
+    width: 98%;
+}
+
+.label {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.text {
+    font-size: medium;
+}
+
+.ctrl-canvas {
+    border: 2px dashed darkkhaki;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ctrl-color {
+    border: 2px dashed darkolivegreen;
+    padding: 5px;
+    flex-grow: 2;
+}
+
+.ctrl-tools {
+    border: 2px dashed darkslategray;
+    padding: 5px;
+    flex-grow: 2;
+}
+
+.slider-container {
+    width: 100%; /* Width of the outside container */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* The slider itself */
+  .grid-slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 5px; /* Specified height */
+    border-radius: 5px;
+    background: darkgreen;
+    outline: none; /* Remove outline */
+    opacity: 0.4; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+  /* Mouse-over effects */
+  .grid-slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .grid-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    border-radius: 50%;
+    background: purple; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .grid-slider::-moz-range-thumb {
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    border-radius: 50%;
+    background: purple; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
 .frame {
-    background-color: indianred;
+    background-color: darkred;
+    border: 3px double red;
     height: 600px;
     width: 750px;
+    border-radius: 25px;
     padding: 20px;
     flex: 1 1 1;
 }
 
 .canvas {
     background-color: white;
+    border: 3px double red;
     height: 600px;
 }
+

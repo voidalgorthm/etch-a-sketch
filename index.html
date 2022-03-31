@@ -16,7 +16,27 @@
             Sketchers
         </header>
         <div class="content">
-            <div class="panel">panel</div>
+            <div class="panel">
+                <div class="ctrl-canvas">
+                    <p class="label" id="ctrl-canvas-lbl">Canvas:</p>
+                    <div class="slider-container">
+                        <input type="range" id="gsize" class="grid-slider" min="3" max="100" value="16">
+                        <p class="text">Grid Size: <span id="gsize-value"></span></p>
+                    </div>
+                    <button class="button" id="clear">Clear All</button>
+                </div>
+                <div class="ctrl-color">
+                    <p class="label" id="ctrl-color-lbl">Color:</p>
+
+
+                    <button class="button" id="fill">Fill</button>
+                    <button class="button" id="rainbow">Rainbow</button>
+                </div>
+                <div class="ctrl-tools">
+                    <p class="label" id="ctrl-tools-lbl">Tools:</p>
+                    <button class="button" id="eraser">Eraser</button>
+                </div>
+            </div>
             <div class="frame">
                 <div class="canvas">
                 </div>
