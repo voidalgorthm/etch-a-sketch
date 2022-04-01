@@ -1,144 +1,159 @@
 * {
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 .container {
-    height: 680px;
-    display: flex;
-    flex-direction: column;   
+  height: 680px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
-    background-color: orange;
-    height: 30px;
-    padding: 20px;
-    display: flex;
-    flex-shrink: 0;   
+  background-color: orange;
+  height: 30px;
+  padding: 20px;
+  display: flex;
+  flex-shrink: 0;
 }
 
 .content {
-    height: 640px;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: center;
+  height: 640px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
 
 .footer {
-    background-color: green;
-    padding: 10px;
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
+  background-color: green;
+  padding: 10px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
 }
 
 .panel {
-    border: 3px double darkblue;
-    height: 600px;
-    width: 200px;
-    padding: 20px;
-    display: flex;
-    flex: 1 1 1;
-    flex-direction: column;
-    justify-content: space-evenly;
+  border: 3px double darkblue;
+  height: 600px;
+  width: 200px;
+  padding: 20px;
+  display: flex;
+  flex: 1 1 1;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .button {
-    width: 98%;
+  border-radius: 12px;
+  width: 100%;
+  height: 40px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
 }
 
 .label {
-    font-size: x-large;
-    font-weight: bold;
-}
-
-.text {
-    font-size: medium;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 .ctrl-canvas {
-    border: 2px dashed darkkhaki;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  border: 2px dashed darkkhaki;
+  padding: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .ctrl-color {
-    border: 2px dashed darkolivegreen;
-    padding: 5px;
-    flex-grow: 2;
+  border: 2px dashed darkolivegreen;
+  padding: 5px;
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .ctrl-tools {
-    border: 2px dashed darkslategray;
-    padding: 5px;
-    flex-grow: 2;
+  border: 2px dashed darkslategray;
+  padding: 5px;
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .slider-container {
-    width: 100%; /* Width of the outside container */
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  /* The slider itself */
-  .grid-slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 100%; /* Full-width */
-    height: 5px; /* Specified height */
-    border-radius: 5px;
-    background: darkgreen;
-    outline: none; /* Remove outline */
-    opacity: 0.4; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
-  }
-  
-  /* Mouse-over effects */
-  .grid-slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
-  
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  .grid-slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 15px; /* Set a specific slider handle width */
-    height: 15px; /* Slider handle height */
-    border-radius: 50%;
-    background: purple; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-  }
-  
-  .grid-slider::-moz-range-thumb {
-    width: 15px; /* Set a specific slider handle width */
-    height: 15px; /* Slider handle height */
-    border-radius: 50%;
-    background: purple; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-  }
+  width: 100%; /* Width of the outside container */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* The slider itself */
+.grid-slider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 5px; /* Specified height */
+  border-radius: 5px;
+  background: darkgreen;
+  outline: none; /* Remove outline */
+  opacity: 0.4; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+.grid-slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.grid-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  border-radius: 50%;
+  background: purple; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.grid-slider::-moz-range-thumb {
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  border-radius: 50%;
+  background: purple; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+#gsizetext {
+  font-size: medium;
+  text-align: start;
+}
 
 .frame {
-    background-color: darkred;
-    border: 3px double red;
-    height: 600px;
-    width: 750px;
-    border-radius: 25px;
-    padding: 20px;
-    flex: 1 1 1;
+  background-color: darkred;
+  border: 3px double red;
+  height: 600px;
+  width: 750px;
+  border-radius: 25px;
+  padding: 20px;
+  flex: 1 1 1;
 }
 
 .canvas {
-    background-color: white;
-    border: 3px double red;
-    height: 600px;
+  background-color: white;
+  border: 3px double red;
+  height: 600px;
 }
-

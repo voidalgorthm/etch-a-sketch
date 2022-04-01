@@ -5,23 +5,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch-A-Sketch</title>
+    <title>Sketch-That</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <div class="container">
-        <header class="header">
-            Sketchers
-        </header>
+        <header class="header">Sketch-That</header>
         <div class="content">
             <div class="panel">
                 <div class="ctrl-canvas">
                     <p class="label" id="ctrl-canvas-lbl">Canvas:</p>
                     <div class="slider-container">
                         <input type="range" id="gsize" class="grid-slider" min="3" max="100" value="16">
-                        <p class="text">Grid Size: <span id="gsize-value"></span></p>
+                        <p id="gsizetxt">Grid Size: <span id="gsize-value">16</span> x <span id="gsize-value">16</span>
+                        </p>
                     </div>
                     <button class="button" id="clear">Clear All</button>
                 </div>
