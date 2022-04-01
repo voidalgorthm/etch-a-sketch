@@ -15,23 +15,23 @@
         <header class="header">Sketch-That</header>
         <div class="content">
             <div class="panel">
-                <div class="ctrl-canvas">
+                <div class="control" id="canvas">
                     <p class="label" id="ctrl-canvas-lbl">Canvas:</p>
-                    <div class="slider-container">
-                        <input type="range" id="gsize" class="grid-slider" min="3" max="100" value="16">
-                        <p id="gsizetxt">Grid Size: <span id="gsize-value">16</span> x <span id="gsize-value">16</span>
+                    <div id="slider-container">
+                        <input type="range" id="gsize" class="slider" min="3" max="100" value="16">
+                        <p id="gsizetxt">Grid Size: <span class="gval">16</span> x <span class="gval">16</span>
                         </p>
                     </div>
                     <button class="button" id="clear">Clear All</button>
                 </div>
-                <div class="ctrl-color">
+                <div class="control" id="color">
                     <p class="label" id="ctrl-color-lbl">Color:</p>
 
 
                     <button class="button" id="fill">Fill</button>
                     <button class="button" id="rainbow">Rainbow</button>
                 </div>
-                <div class="ctrl-tools">
+                <div class="control" id="tools">
                     <p class="label" id="ctrl-tools-lbl">Tools:</p>
                     <button class="button" id="eraser">Eraser</button>
                 </div>

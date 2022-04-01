@@ -66,33 +66,28 @@
   font-weight: bold;
 }
 
-.ctrl-canvas {
+.control {
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control#canvas {
   border: 2px dashed darkkhaki;
-  padding: 10px 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
-.ctrl-color {
+.control#color {
   border: 2px dashed darkolivegreen;
-  padding: 5px;
-  display: flex;
   flex-grow: 2;
-  flex-direction: column;
-  gap: 20px;
 }
 
-.ctrl-tools {
+.control#tools {
   border: 2px dashed darkslategray;
-  padding: 5px;
-  display: flex;
   flex-grow: 2;
-  flex-direction: column;
-  gap: 20px;
 }
 
-.slider-container {
+#slider-container {
   width: 100%; /* Width of the outside container */
   display: flex;
   flex-direction: column;
@@ -100,7 +95,7 @@
 }
 
 /* The slider itself */
-.grid-slider {
+#gsize {
   -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
   width: 100%; /* Full-width */
@@ -114,12 +109,12 @@
 }
 
 /* Mouse-over effects */
-.grid-slider:hover {
+#gsize:hover {
   opacity: 1; /* Fully shown on mouse-over */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.grid-slider::-webkit-slider-thumb {
+#gsize::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
   width: 15px; /* Set a specific slider handle width */
@@ -129,7 +124,7 @@
   cursor: pointer; /* Cursor on hover */
 }
 
-.grid-slider::-moz-range-thumb {
+#gsize::-moz-range-thumb {
   width: 15px; /* Set a specific slider handle width */
   height: 15px; /* Slider handle height */
   border-radius: 50%;
