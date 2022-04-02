@@ -151,4 +151,12 @@
   background-color: white;
   border: 3px double red;
   height: 600px;
+  display: grid;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+}
+
+.grid-cell {
+  background-color: inherit;
+  border: 1px solid grey
 }
