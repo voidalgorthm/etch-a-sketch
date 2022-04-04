@@ -5,60 +5,35 @@ const content = container.querySelector('.content');
 /* panel */
 const panel = content.querySelector('.panel');
 /* control canvas */
-const ctrlcanvas = panel.querySelector('.control#canvas');
-const gcontainer = ctrlcanvas.querySelector('#slider-container');
-const gslider = gcontainer.querySelector('#gsize');
-const gval = gcontainer.querySelectorAll('span.gval');
+const controlCanvas = panel.querySelector('.control#canvas');
+const gridContainer = controlCanvas.querySelector('#gslider');
+const gridSlider = gridContainer.querySelector('#gsize');
+const gridValue = gridContainer.querySelectorAll('span.gval');
 /* control color */
-const ctrlcolor = panel.querySelector('.control#color');
-const cslider = ctrlcolor.querySelector('#cslider');
-const cval = ctrlcolor.querySelector('#cval');
+const controlColor = panel.querySelector('.control#color');
+const colorSlider = controlColor.querySelector('#cslider');
+const select = controlColor.querySelector('#select');
+const leftSelect = select.querySelector('#cselect1');
+const rightSelect = select.querySelector('#cselect2');
+const colorValue = controlColor.querySelector('#cval');
 /* control tools */
 
 /* canvas */
 const canvas = document.querySelector('.canvas');
 
-let size = gslider.getAttribute('value');
+let size = gridSlider.getAttribute('value');
+let leftColor;
+
 displayGrid(size);
 generateRainbow();
 
-gslider.oninput = function (e) {
-  gval.forEach(val => {
+gridSlider.oninput = function (e) {
+  gridValue.forEach(val => {
     val.textContent = e.target.value;
   });
   size = e.target.value;
-  clearGrid();
+  eraseGrid();
   displayGrid(size);
-}
-
-cslider.oninput = function() {
-  pickColor();
-}
-
-function generateRainbow() {
-  let colors = [];
-  for (let i = 0; i < 372; i++) {
-    colors[i] = `hsl(${i}, 100%, 50%)`;
-    if(i > 359) {
-      colors[i] = `hsl(0, 100%, 50%)`;
-    }
-  }
-  colors = colors.toString();
-  root.style.setProperty("--colors", colors);
-}
-
-let colorValue;
-function pickColor() {
-  const rval = cslider.value;
-  let outputColor;
-  if(rval <= 360){
-    outputColor = `hsl(${rval},100%,50%)`;
-  } else {
-    outputColor = `hsl(0,100%,50%)`;
-  }
-  cval.style.backgroundColor = outputColor;
-  colorValue = Number(rval);
-  // cval.textContent =
 }
 
 function displayGrid(size) {
@@ -71,10 +46,42 @@ function displayGrid(size) {
   };
 };
 
-function clearGrid() {
+function eraseGrid() {
   let display = canvas.querySelectorAll('.grid-cell');
   display.forEach(box => {
     box.remove();
   });
 }
+
+function generateRainbow() {
+  let colors = [];
+  for (let i = 0; i < 360; i++) {
+    colors[i] = `hsl(${i}, 100%, 50%)`;
+    /* if(i > 359) {
+      colors[i] = `hsl(0, 100%, 50%)`;
+    } */
+  }
+  colors = colors.toString();
+  root.style.setProperty("--colors", colors);
+}
+
+colorSlider.oninput = function() {
+  pickColor();
+  console.log(leftColor);
+}
+
+
+function pickColor() {
+  const rainbowValue = colorSlider.value;
+  let outputColor;
+  // if(rainbowValue < 360) {
+    outputColor = `hsl(${rainbowValue},100%,50%)`;
+  /*}  else {
+    outputColor = `hsl(0,100%,50%)`;
+  } */
+  colorValue.style.backgroundColor = outputColor;
+  leftColor = Number(rainbowValue);
+  // colorValue.textContent =
+}
+
 
