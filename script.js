@@ -4,13 +4,16 @@ const container = document.querySelector('.container');
 const content = container.querySelector('.content');
 /* panel */
 const panel = content.querySelector('.panel');
+/* control canvas */
 const ctrlcanvas = panel.querySelector('.control#canvas');
 const gcontainer = ctrlcanvas.querySelector('#slider-container');
 const gslider = gcontainer.querySelector('#gsize');
 const gval = gcontainer.querySelectorAll('span.gval');
+/* control color */
 const ctrlcolor = panel.querySelector('.control#color');
 const cslider = ctrlcolor.querySelector('#cslider');
 const cval = ctrlcolor.querySelector('#cval');
+/* control tools */
 
 /* canvas */
 const canvas = document.querySelector('.canvas');

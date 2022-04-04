@@ -66,17 +66,17 @@
 }
 
 .label {
-  font-size: x-large;
+  font-size: large;
   font-weight: bold;
 }
 
 .control {
-  padding: 10px 5px;
+  padding: 5px 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-evenly;
+  gap: 10px;
 }
 
 .control#canvas {
@@ -90,6 +90,24 @@
 
 .control#tools {
   border: 2px dashed darkslategray;
+  flex-grow: 2;
+}
+
+.sublabel {
+  width: 40%;
+  font-size: medium;
+}
+
+#cpicker {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.picker {
+  border: 1px solid white;
   flex-grow: 2;
 }
 
@@ -187,7 +205,6 @@
   width: 100%;
   height: 20px;
   border: 1px solid white;
-
 }
 
 .frame {
