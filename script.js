@@ -18,6 +18,7 @@ const gridValue = gridContainer.querySelectorAll('span.gval');
 /* control color */
 const controlColor = panel.querySelector('.control#color');
 const colorPicker = controlColor.querySelector('#cpicker');
+const pickerButtons = colorPicker.querySelectorAll('.picker');
 const leftPick = colorPicker.querySelector('#cpick1');
 const rightPick = colorPicker.querySelector('#cpick2');
 const colorSlider = controlColor.querySelector('#cslider');
@@ -69,6 +70,22 @@ function eraseGrid() {
 
 let leftColor;
 let rightColor;
+
+pickerButtons.forEach(picker => {
+  picker.addEventListener('change', pickColor, false);
+})
+
+function pickColor(e) {
+  pickerButtons.forEach(function (picker) {
+    if (picker === e.target) {
+      if (picker.id.match('cpick1')) {
+        leftColor = e.target.value;
+      } else if (picker.id.match('cpick2')) {
+        rightColor = e.target.value;
+      }
+    }
+  });
+}
 
 let sliderActive = select.querySelector('.active');
 
