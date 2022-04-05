@@ -120,19 +120,18 @@
 }
 
 .selector {
-  border-radius: 15px;
+  color: black;
+  background-color: white;
   border: 1px solid white;
   box-shadow: 0 7px #999;
   cursor: pointer;
   width: 40%;
   flex-grow: 2;
-  
 }
 
-.selector:active {
-  /* background-color: #3e8e41; */
-  box-shadow: 0 3px #666;
+.active {
   transform: translateY(4px);
+  box-shadow: 0 3px #666;
 }
 
 #gslider {
@@ -226,6 +225,7 @@
 }
 
 #cval {
+  background-color: inherit;
   width: 100%;
   height: 20px;
   border: 1px solid white;
