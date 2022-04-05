@@ -1,7 +1,9 @@
+/* after script load */
 document.addEventListener('DOMContentLoaded', function () {
   displayGrid(size);
   generateRainbow();
 }, false);
+
 /* general */
 const root = document.documentElement;
 const container = document.querySelector('.container');
@@ -23,11 +25,19 @@ const select = controlColor.querySelector('#select');
 const selectButtons = select.querySelectorAll('.selector');
 const leftSelect = select.querySelector('#cselect1');
 const rightSelect = select.querySelector('#cselect2');
-// const colorValue = controlColor.querySelector('#cval');
 /* control tools */
 
 /* canvas */
 const canvas = document.querySelector('.canvas');
+
+function generateRainbow() {
+  let colors = [];
+  for (let i = 0; i < 360; i++) {
+    colors[i] = `hsl(${i}, 100%, 50%)`;
+  }
+  colors = colors.toString();
+  root.style.setProperty("--colors", colors);
+}
 
 let size = gridSlider.getAttribute('value');
 
@@ -57,37 +67,42 @@ function eraseGrid() {
   });
 }
 
-function generateRainbow() {
-  let colors = [];
-  for (let i = 0; i < 360; i++) {
-    colors[i] = `hsl(${i}, 100%, 50%)`;
-  }
-  colors = colors.toString();
-  root.style.setProperty("--colors", colors);
-}
-
 let leftColor;
 let rightColor;
 
-let sliderActive = document.getElementsByClassName('active');
+let sliderActive = select.querySelector('.active');
 
+/* let sliderActive = document.getElementsByClassName('active');
 for (let index = 0; index < selectButtons.length; index++) {
-  selectButtons[index].addEventListener('click', function() {
+  selectButtons[index].addEventListener('click', function () {
     sliderActive[0].classList.remove('active');
-      this.classList.add('active');
+    this.classList.add('active');
   });
-}
+} */
 
 colorSlider.oninput = () => {
   const rainbowValue = colorSlider.value;
   let outputColor = `hsl(${rainbowValue},100%,50%)`;
 
-  sliderActive[0].style.backgroundColor = outputColor;
-  
-  if(sliderActive[0].id.match('cselect1')){
+  sliderActive.style.backgroundColor = outputColor;
+
+  if (sliderActive.id.match('cselect1')) {
     leftColor = outputColor;
   } else {
     rightColor = outputColor;
   }
 }
 
+selectButtons.forEach(button => {
+  button.addEventListener('click', switchActive);
+})
+
+function switchActive(e) {
+  selectButtons.forEach(function (button) {
+    if (button === e.target && !button.classList.contains('active')) {
+      sliderActive = button;
+      return button.classList.add('active');
+    }
+    return button.classList.remove('active');
+  });
+}
