@@ -1,50 +1,45 @@
-:root {
+/* :root {
   --colors;
-}
+} */
 
 * {
   background-color: black;
   color: white;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   text-align: center;
 }
 
-.container {
-  height: 680px;
+body {
+  height: 740px;
   display: flex;
   flex-direction: column;
 }
 
-.header {
-  background-color: orange;
+header, footer {
+  background-color: grey;
   height: 30px;
-  padding: 20px;
-  display: flex;
-  flex-shrink: 0;
-}
-
-.content {
-  height: 640px;
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  align-items: center;
-}
-
-.footer {
-  background-color: green;
   padding: 10px;
   display: flex;
   flex-shrink: 0;
   justify-content: center;
+  align-items: center;
+}
+
+.content {
+  height: 680px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .panel {
   border: 3px double darkblue;
-  height: 600px;
-  width: 200px;
+  height: 640px;
+  width: 240px;
   padding: 20px;
   display: flex;
   flex: 1 1 1;
@@ -52,10 +47,34 @@
   justify-content: space-evenly;
 }
 
+.frame {
+  background-color: darkred;
+  border: 5px double red;
+  height: 640px;
+  width: 740px;
+  border-radius: 25px;
+  padding: 10px;
+  flex: 1 1 1;
+}
+
+.canvas {
+  background-color: white;
+  border: 5px double red;
+  height: 610px;
+  display: grid;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+}
+
+.title {
+  background-color: grey;
+  color: black;
+}
+
 .button {
-  border-radius: 12px;
+  border-radius: 16px;
   width: 100%;
-  height: 40px;
+  height: 30px;
   transition-duration: 0.2s;
   cursor: pointer;
 }
@@ -71,7 +90,7 @@
 }
 
 .control {
-  padding: 5px 5px;
+  padding: 10px 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -222,32 +241,6 @@
   background: transparent;
   border: 2px solid white;
   border-radius: 5px;
-}
-
-#cval {
-  background-color: inherit;
-  width: 100%;
-  height: 20px;
-  border: 1px solid white;
-}
-
-.frame {
-  background-color: darkred;
-  border: 3px double red;
-  height: 600px;
-  width: 750px;
-  border-radius: 25px;
-  padding: 20px;
-  flex: 1 1 1;
-}
-
-.canvas {
-  background-color: white;
-  border: 3px double red;
-  height: 600px;
-  display: grid;
-  grid-template-rows: repeat(var(--grid-rows), 1fr);
-  grid-template-columns: repeat(var(--grid-cols), 1fr);
 }
 
 .grid-cell {

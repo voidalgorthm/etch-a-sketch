@@ -11,49 +11,45 @@
 </head>
 
 <body>
-    <div class="container">
-        <header class="header">Sketch-That</header>
-        <div class="content">
-            <div class="panel">
-                <div class="control" id="canvas">
-                    <p class="label" id="ctrl-canvas-lbl">Canvas:</p>
-                    <div id="gslider">
-                        <input type="range" id="gsize" class="slider" min="3" max="50" value="5">
-                        <p id="gsizetxt">Grid Size: <span class="gval">5</span> x <span class="gval">5</span>
-                        </p>
-                    </div>
-                    <button class="button" id="clear">Clear All</button>
+    <header><div class="headfoot"><p class="title">Sketch-That</p></div></header>
+    <div class="content">
+        <div class="panel">
+            <div class="control" id="canvas">
+                <p class="label" >Canvas:</p>
+                <div id="gslider">
+                    <input type="range" id="gsize" class="slider" min="3" max="50" value="5">
+                    <p id="gsizetxt">Grid Size: <span class="gval">5</span> x <span class="gval">5</span>
+                    </p>
                 </div>
-                <div class="control" id="color">
-                    <p class="label" id="ctrl-color-lbl">Color:</p>
-                    <div id="cpicker">
-                        <span class="sublabel">Left:</span>
-                        <input type="color" id="cpick1" value="#000000" class="picker">
-                        <span class="sublabel">Right:</span>
-                        <input type="color" id="cpick2" value="#000000" class="picker">
-                    </div>
-                    <input type="range" id="cslider" value="1" min="1" max="360">
-                    <div id="select">
-                        <button class="selector active" id="cselect1">Left</button>
-                        <button class="selector" id="cselect2">Right</button>
-                    </div>
-                    <button class="button" id="fill">Fill</button>
-                    <button class="button" id="rainbow">Rainbow</button>
-                </div>
-                <div class="control" id="tools">
-                    <p class="label" id="ctrl-tools-lbl">Tools:</p>
-                    <button class="button" id="eraser">Eraser</button>
-                </div>
+                <button class="button" id="clear">Clear All</button>
             </div>
-            <div class="frame">
-                <div class="canvas">
+            <div class="control" id="color">
+                <p class="label">Color:</p>
+                <div id="cpicker">
+                    <span class="sublabel">Left:</span>
+                    <input type="color" id="cpick1" value="#000000" class="picker">
+                    <span class="sublabel">Right:</span>
+                    <input type="color" id="cpick2" value="#000000" class="picker">
                 </div>
+                <input type="range" id="cslider" value="1" min="1" max="360">
+                <div id="select">
+                    <button class="selector active" id="cselect1">Left</button>
+                    <button class="selector" id="cselect2">Right</button>
+                </div>
+                <button class="button" id="rainbow">Rainbow</button>
+                <button class="button" id="fill">Fill</button>
+            </div>
+            <div class="control" id="tools">
+                <p class="label">Tools:</p>
+                <button class="button" id="eraser">Eraser</button>
             </div>
         </div>
-        <footer class="footer">
-            foot
-        </footer>
+        <div class="frame">
+            <div class="canvas">
+            </div>
+        </div>
     </div>
+    <footer><div class="headfoot"><p class="title">foot</p></div></footer>
 </body>
 
 </html>

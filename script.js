@@ -1,13 +1,13 @@
 /* after script load */
 document.addEventListener('DOMContentLoaded', function () {
   displayGrid(size);
-  generateRainbow();
+  sliderRainbow();
+  disableCanvasMenu();
 }, false);
 
 /* general */
 const root = document.documentElement;
-const container = document.querySelector('.container');
-const content = container.querySelector('.content');
+const content = document.querySelector('.content');
 /* panel */
 const panel = content.querySelector('.panel');
 /* control canvas */
@@ -31,13 +31,19 @@ const rightSelect = select.querySelector('#cselect2');
 /* canvas */
 const canvas = document.querySelector('.canvas');
 
-function generateRainbow() {
+function sliderRainbow() {
   let colors = [];
   for (let i = 0; i < 360; i++) {
     colors[i] = `hsl(${i}, 100%, 50%)`;
   }
   colors = colors.toString();
   root.style.setProperty("--colors", colors);
+}
+
+function disableCanvasMenu() {
+  canvas.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  }, false);
 }
 
 let size = gridSlider.getAttribute('value');
@@ -87,8 +93,6 @@ function pickColor(e) {
   });
 }
 
-let sliderActive = select.querySelector('.active');
-
 /* let sliderActive = document.getElementsByClassName('active');
 for (let index = 0; index < selectButtons.length; index++) {
   selectButtons[index].addEventListener('click', function () {
@@ -96,6 +100,8 @@ for (let index = 0; index < selectButtons.length; index++) {
     this.classList.add('active');
   });
 } */
+
+let sliderActive = select.querySelector('.active');
 
 colorSlider.oninput = () => {
   const rainbowValue = colorSlider.value;
@@ -123,3 +129,8 @@ function switchActive(e) {
     return button.classList.remove('active');
   });
 }
+
+let draw = true;
+let rainbow = false;
+let eraser = false;
+
