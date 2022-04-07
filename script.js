@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   displayGrid(size);
   sliderRainbow();
+  clickMapping();
   disableCanvasMenu();
 }, false);
 
@@ -11,12 +12,12 @@ const content = document.querySelector('.content');
 /* panel */
 const panel = content.querySelector('.panel');
 /* control canvas */
-const controlCanvas = panel.querySelector('.control#canvas');
+const controlCanvas = panel.querySelector('.control#ccanvas');
 const gridContainer = controlCanvas.querySelector('#gslider');
 const gridSlider = gridContainer.querySelector('#gsize');
 const gridValue = gridContainer.querySelectorAll('span.gval');
 /* control color */
-const controlColor = panel.querySelector('.control#color');
+const controlColor = panel.querySelector('.control#ccolor');
 const colorPicker = controlColor.querySelector('#cpicker');
 const pickerButtons = colorPicker.querySelectorAll('.picker');
 const leftPick = colorPicker.querySelector('#cpick1');
@@ -29,7 +30,8 @@ const rightSelect = select.querySelector('#cselect2');
 /* control tools */
 
 /* canvas */
-const canvas = document.querySelector('.canvas');
+const frame = content.querySelector('.frame');
+const canvas = frame.querySelector('#canvas');
 
 function sliderRainbow() {
   let colors = [];
@@ -55,6 +57,7 @@ gridSlider.oninput = function (e) {
   size = e.target.value;
   eraseGrid();
   displayGrid(size);
+  clickMapping();
 }
 
 function displayGrid(size) {
@@ -63,19 +66,20 @@ function displayGrid(size) {
 
   for (let index = 0; index < (size * size); index++) {
     let cell = document.createElement('div');
+    cell.setAttribute('draggable',false);
     canvas.appendChild(cell).className = "grid-cell";
   };
 };
 
 function eraseGrid() {
-  let display = canvas.querySelectorAll('.grid-cell');
-  display.forEach(box => {
+  let grid = canvas.querySelectorAll('.grid-cell');
+  grid.forEach(box => {
     box.remove();
   });
 }
 
-let leftColor;
-let rightColor;
+let leftColor = leftPick.value;
+let rightColor = rightPick.value;
 
 pickerButtons.forEach(picker => {
   picker.addEventListener('change', pickColor, false);
@@ -93,18 +97,11 @@ function pickColor(e) {
   });
 }
 
-/* let sliderActive = document.getElementsByClassName('active');
-for (let index = 0; index < selectButtons.length; index++) {
-  selectButtons[index].addEventListener('click', function () {
-    sliderActive[0].classList.remove('active');
-    this.classList.add('active');
-  });
-} */
-
-let sliderActive = select.querySelector('.active');
+let sliderActive;
 
 colorSlider.oninput = () => {
   const rainbowValue = colorSlider.value;
+  sliderActive = select.querySelector('.active');
   let outputColor = `hsl(${rainbowValue},100%,50%)`;
 
   sliderActive.style.backgroundColor = outputColor;
@@ -130,7 +127,65 @@ function switchActive(e) {
   });
 }
 
-let draw = true;
+let determineMouse = function (e) {
+  if (e.buttons === 1) {
+    return "left";
+  } else if (e.buttons === 2) {
+    return "right";
+  }
+};
+
+let ink = true;
 let rainbow = false;
 let eraser = false;
 
+let mouseEvent = false;
+
+function clickMapping() {
+  let grid = canvas.querySelectorAll('.grid-cell');
+  for (let i = 0; i < grid.length; i++) {
+    grid[i].addEventListener('mousedown', clickDraw);
+    grid[i].addEventListener('mouseenter', clickDrawHover);
+  }
+}
+
+function clickDraw(e) {
+  if (determineMouse(e) === 'left') {
+    e.target.style.backgroundColor = leftColor;
+  } else if (determineMouse(e) === 'right') {
+    e.target.style.backgroundColor = rightColor;
+  }
+}
+
+function clickDrawHover(e) {
+  if (determineMouse(e) === 'left') {
+    e.target.style.backgroundColor = leftColor;
+  } else if (determineMouse(e) === 'right') {
+    e.target.style.backgroundColor = rightColor;
+  }
+}
+
+/* 
+let area = document.getElementById('canvas');
+let display = area.getElementsByClassName('grid-cell');
+canvas.addEventListener('mousedown', function () {
+  canvas.addEventListener('mousemove', drag);
+  canvas.addEventListener('mouseup', lift);
+
+  let isDragging = false;
+
+  function drag(e) {
+    isDragging = true;
+    if (determineMouse(e) === 'left') {
+      e.target.style.backgroundColor = leftColor;
+    } else if (determineMouse(e) === 'right') {
+      e.target.style.backgroundColor = rightColor;
+    }
+  }
+
+  function lift() {
+    isDragging = false;
+    canvas.removeEventListener('mousemove', drag);
+    canvas.removeEventListener('mouseup', lift);
+  }
+}); */

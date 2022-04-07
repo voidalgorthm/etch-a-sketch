@@ -14,16 +14,16 @@
     <header><div class="headfoot"><p class="title">Sketch-That</p></div></header>
     <div class="content">
         <div class="panel">
-            <div class="control" id="canvas">
+            <div class="control" id="ccanvas">
                 <p class="label" >Canvas:</p>
                 <div id="gslider">
-                    <input type="range" id="gsize" class="slider" min="3" max="50" value="5">
-                    <p id="gsizetxt">Grid Size: <span class="gval">5</span> x <span class="gval">5</span>
+                    <input type="range" id="gsize" class="slider" min="3" max="50" value="16">
+                    <p id="gsizetxt">Grid Size: <span class="gval">16</span> x <span class="gval">16</span>
                     </p>
                 </div>
                 <button class="button" id="clear">Clear All</button>
             </div>
-            <div class="control" id="color">
+            <div class="control" id="ccolor">
                 <p class="label">Color:</p>
                 <div id="cpicker">
                     <span class="sublabel">Left:</span>
@@ -39,13 +39,13 @@
                 <button class="button" id="rainbow">Rainbow</button>
                 <button class="button" id="fill">Fill</button>
             </div>
-            <div class="control" id="tools">
+            <div class="control" id="ctools">
                 <p class="label">Tools:</p>
                 <button class="button" id="eraser">Eraser</button>
             </div>
         </div>
         <div class="frame">
-            <div class="canvas">
+            <div class="canvas" id="canvas" draggable="false">
             </div>
         </div>
     </div>

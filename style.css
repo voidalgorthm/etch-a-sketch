@@ -50,7 +50,7 @@ header, footer {
 
 .frame {
   background-color: darkred;
-  border: 5px double red;
+  border: 3px double red;
   height: 640px;
   width: 740px;
   border-radius: 25px;
@@ -60,7 +60,7 @@ header, footer {
 
 .canvas {
   background-color: white;
-  border: 5px double red;
+  border: 1px solid red;
   height: 610px;
   display: grid;
   grid-template-rows: repeat(var(--grid-rows), 1fr);
@@ -99,16 +99,16 @@ header, footer {
   gap: 10px;
 }
 
-.control#canvas {
+.control#ccanvas {
   border: 2px dashed darkolivegreen;
 }
 
-.control#color {
+.control#ccolor {
   border: 2px dashed darkgoldenrod;
   flex-grow: 2;
 }
 
-.control#tools {
+.control#ctools {
   border: 2px dashed darkslategray;
   flex-grow: 2;
 }
