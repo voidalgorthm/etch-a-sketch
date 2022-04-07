@@ -39,7 +39,7 @@ function sliderRainbow() {
     colors[i] = `hsl(${i}, 100%, 50%)`;
   }
   colors = colors.toString();
-  root.style.setProperty("--colors", colors);
+  colorSlider.style.setProperty("--colors", colors);
 }
 
 function disableCanvasMenu() {
@@ -135,11 +135,28 @@ let determineMouse = function (e) {
   }
 };
 
-let ink = true;
+let color = true;
 let rainbow = false;
 let eraser = false;
 
 let mouseEvent = false;
+
+function stopDragging() {
+  mouseEvent = false;
+  canvas.removeEventListener('mouseup', stopDragging);
+}
+
+function stopMouseLeave() {
+  mouseEvent = false;
+  canvas.removeEventListener('mouseleave', stopMouseLeave);
+}
+
+canvas.addEventListener('mousedown', function(e) {
+  mouseEvent = true;
+  canvas.addEventListener('mouseup', stopDragging);
+  canvas.addEventListener('mouseleave', stopMouseLeave);
+  e.preventDefault();
+});
 
 function clickMapping() {
   let grid = canvas.querySelectorAll('.grid-cell');
