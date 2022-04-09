@@ -70,6 +70,7 @@ function displayGrid(size) {
   for (let index = 0; index < (size * size); index++) {
     let cell = document.createElement('div');
     cell.setAttribute('draggable', false);
+    cell.setAttribute('inked', false);
     canvas.appendChild(cell).className = "grid-cell";
   };
 };
@@ -84,25 +85,28 @@ function eraseGrid() {
 canvasBackground.addEventListener('input', (e) => {
   let grid = canvas.querySelectorAll('.grid-cell');
   grid.forEach(cell => {
-    cell.style.backgroundColor = e.target.value;
+    if (cell.getAttribute('inked') === "false") {
+      cell.style.backgroundColor = e.target.value;
+    }
   });
 }, false);
 
 canvasBackground.addEventListener('change', (e) => {
   let grid = canvas.querySelectorAll('.grid-cell');
   grid.forEach(cell => {
-    cell.style.backgroundColor = e.target.value;
+    if (cell.getAttribute('inked') === "false") {
+      cell.style.backgroundColor = e.target.value;
+    }
   });
 }, false);
 
-clearCanvas.addEventListener('click', clearAll);
-
-function clearAll() {
+clearCanvas.addEventListener('click', () => {
   let grid = canvas.querySelectorAll('.grid-cell');
   grid.forEach(cell => {
-    cell.style.backgroundColor = '#fff';
+    cell.setAttribute('inked', false);
+    cell.style.backgroundColor = canvasBackground.value;
   });
-}
+});
 
 let leftColor = leftPick.value;
 let rightColor = rightPick.value;
@@ -155,9 +159,11 @@ function switchActive(e) {
 
 let determineMouse = function (e) {
   if (e.buttons === 1) {
-    return "left";
+    return 1;
   } else if (e.buttons === 2) {
-    return "right";
+    return 2;
+  } else if (e.buttons === 0) {
+    return 0;
   }
 };
 
@@ -193,18 +199,22 @@ function clickMapping() {
 }
 
 function clickDraw(e) {
-  if (determineMouse(e) === 'left') {
+  e.target.setAttribute('inked', true);
+  if (determineMouse(e) === 1) {
     e.target.style.backgroundColor = leftColor;
-  } else if (determineMouse(e) === 'right') {
+  } else if (determineMouse(e) === 2) {
     e.target.style.backgroundColor = rightColor;
   }
 }
 
 function clickDrawHover(e) {
-  if (determineMouse(e) === 'left') {
-    e.target.style.backgroundColor = leftColor;
-  } else if (determineMouse(e) === 'right') {
-    e.target.style.backgroundColor = rightColor;
+  if (determineMouse(e) > 0) {
+    e.target.setAttribute('inked', true);
+    if (determineMouse(e) === 1) {
+      e.target.style.backgroundColor = leftColor;
+    } else if (determineMouse(e) === 2) {
+      e.target.style.backgroundColor = rightColor;
+    }
   }
 }
 
