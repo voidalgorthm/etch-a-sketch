@@ -105,17 +105,62 @@ header, footer {
   font-size: medium;
 }
 
-.button {
+button {
   border-radius: 16px;
-  width: 100%;
-  height: 30px;
-  transition-duration: 0.2s;
   cursor: pointer;
+  width: 100%;
+  transition-duration: 0.2s;
 }
 
-.button:hover {
-  background-color: white;
+.btns-text {
+  background-color: inherit;
+  color: inherit;
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btns-text:hover {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.btns-toggle, .btns {
+  height: 30px;
+}
+
+.on {
+  background-color: darkkhaki;
   color: black;
+}
+
+#cselect {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.btns-select {
+  color: brown;
+  box-shadow: 0 7px #999;
+  width: 40%;
+  height: 25px;
+  flex-grow: 2;
+}
+
+.active {
+  transform: translateY(4px);
+  box-shadow: 0 3px #666;
 }
 
 #bcpicker {
@@ -138,26 +183,7 @@ header, footer {
   flex-grow: 2;
 }
 
-#cselect {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  justify-content: space-between;
-}
 
-.selector {
-  color: brown;
-  box-shadow: 0 7px #999;
-  cursor: pointer;
-  width: 40%;
-  flex-grow: 2;
-}
-
-.active {
-  transform: translateY(4px);
-  box-shadow: 0 3px #666;
-}
 
 #gslider {
   width: 100%;

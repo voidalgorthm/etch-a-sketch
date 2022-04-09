@@ -11,6 +11,7 @@ const root = document.documentElement;
 const content = document.querySelector('.content');
 /* panel */
 const panel = content.querySelector('.panel');
+const toggleButtons = panel.querySelectorAll('.btns-toggle');
 /* control canvas */
 const controlCanvas = panel.querySelector('.control#ccanvas');
 const gridContainer = controlCanvas.querySelector('#gslider');
@@ -27,7 +28,7 @@ const leftPick = colorPicker.querySelector('#cpick1');
 const rightPick = colorPicker.querySelector('#cpick2');
 const colorSlider = controlColor.querySelector('#cslider');
 const colorSelect = controlColor.querySelector('#cselect');
-const selectButtons = colorSelect.querySelectorAll('.selector');
+const selectButtons = colorSelect.querySelectorAll('.btns-select');
 const leftSelect = colorSelect.querySelector('#cselect1');
 const rightSelect = colorSelect.querySelector('#cselect2');
 /* control tools */
@@ -52,6 +53,12 @@ function disableCanvasMenu() {
 }
 
 let size = gridSlider.getAttribute('value');
+
+toggleButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.classList.toggle('on');
+  })
+});
 
 gridSlider.oninput = function (e) {
   gridValue.forEach(val => {
@@ -127,13 +134,13 @@ function pickColor(e) {
   });
 }
 
-let sliderActive;
+let sliderActive = colorSelect.querySelector('.active');
+let sliderInactive = colorSelect.querySelector(':not(.active)');
 
 colorSlider.oninput = () => {
   const rainbowValue = colorSlider.value;
-  sliderActive = colorSelect.querySelector('.active');
-  let outputColor = `hsl(${rainbowValue},100%,50%)`;
 
+  let outputColor = `hsl(${rainbowValue},100%,50%)`;
   sliderActive.style.backgroundColor = outputColor;
 
   if (sliderActive.id.match('cselect1')) {
@@ -148,12 +155,24 @@ selectButtons.forEach(button => {
 })
 
 function switchActive(e) {
-  selectButtons.forEach(function (button) {
-    if (button === e.target && !button.classList.contains('active')) {
-      sliderActive = button;
-      return button.classList.add('active');
+  selectButtons.forEach(button => {
+    if (button === e.target) {
+      if (button.classList.contains('active')) {
+        sliderInactive = button;
+        button.classList.remove('active');
+      } else {
+        sliderActive = button;
+        button.classList.add('active');
+      }
+    } else if (button !== e.target) {
+      if (button.classList.contains('active')) {
+        sliderInactive = button;
+        button.classList.remove('active');
+      } else {
+        sliderActive = button;
+        button.classList.add('active');
+      }
     }
-    return button.classList.remove('active');
   });
 }
 
