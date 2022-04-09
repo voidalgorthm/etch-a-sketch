@@ -29,8 +29,7 @@ const rightPick = colorPicker.querySelector('#cpick2');
 const colorSlider = controlColor.querySelector('#cslider');
 const colorSelect = controlColor.querySelector('#cselect');
 const selectButtons = colorSelect.querySelectorAll('.btns-select');
-const leftSelect = colorSelect.querySelector('#cselect1');
-const rightSelect = colorSelect.querySelector('#cselect2');
+const colorRainbow = controlColor.querySelector('#rainbow');
 /* control tools */
 
 /* canvas */
@@ -115,67 +114,6 @@ clearCanvas.addEventListener('click', () => {
   });
 });
 
-let leftColor = leftPick.value;
-let rightColor = rightPick.value;
-
-pickerButtons.forEach(picker => {
-  picker.addEventListener('change', pickColor, false);
-})
-
-function pickColor(e) {
-  pickerButtons.forEach(function (picker) {
-    if (picker === e.target) {
-      if (picker.id.match('cpick1')) {
-        leftColor = e.target.value;
-      } else if (picker.id.match('cpick2')) {
-        rightColor = e.target.value;
-      }
-    }
-  });
-}
-
-let sliderActive = colorSelect.querySelector('.active');
-let sliderInactive = colorSelect.querySelector(':not(.active)');
-
-colorSlider.oninput = () => {
-  const rainbowValue = colorSlider.value;
-
-  let outputColor = `hsl(${rainbowValue},100%,50%)`;
-  sliderActive.style.backgroundColor = outputColor;
-
-  if (sliderActive.id.match('cselect1')) {
-    leftColor = outputColor;
-  } else {
-    rightColor = outputColor;
-  }
-}
-
-selectButtons.forEach(button => {
-  button.addEventListener('click', switchActive);
-})
-
-function switchActive(e) {
-  selectButtons.forEach(button => {
-    if (button === e.target) {
-      if (button.classList.contains('active')) {
-        sliderInactive = button;
-        button.classList.remove('active');
-      } else {
-        sliderActive = button;
-        button.classList.add('active');
-      }
-    } else if (button !== e.target) {
-      if (button.classList.contains('active')) {
-        sliderInactive = button;
-        button.classList.remove('active');
-      } else {
-        sliderActive = button;
-        button.classList.add('active');
-      }
-    }
-  });
-}
-
 let determineMouse = function (e) {
   if (e.buttons === 1) {
     return 1;
@@ -185,10 +123,6 @@ let determineMouse = function (e) {
     return 0;
   }
 };
-
-let inkcolor = true;
-let inkrainbow = false;
-let inkeraser = false;
 
 let mouseEvent = false;
 
@@ -219,45 +153,110 @@ function clickMapping() {
 
 function clickDraw(e) {
   e.target.setAttribute('inked', true);
-  if (determineMouse(e) === 1) {
-    e.target.style.backgroundColor = leftColor;
-  } else if (determineMouse(e) === 2) {
-    e.target.style.backgroundColor = rightColor;
+  if (color) {
+    if (determineMouse(e) === 1) {
+      e.target.style.backgroundColor = leftColorPen;
+    } else if (determineMouse(e) === 2) {
+      e.target.style.backgroundColor = rightColorPen;
+    }
+  } else if (rainbow) {
+    e.target.style.backgroundColor = rainbowGenerator();
   }
 }
 
 function clickDrawHover(e) {
   if (determineMouse(e) > 0) {
-    e.target.setAttribute('inked', true);
-    if (determineMouse(e) === 1) {
-      e.target.style.backgroundColor = leftColor;
-    } else if (determineMouse(e) === 2) {
-      e.target.style.backgroundColor = rightColor;
+    if (color) {
+      e.target.setAttribute('inked', true);
+      if (determineMouse(e) === 1) {
+        e.target.style.backgroundColor = leftColorPen;
+      } else if (determineMouse(e) === 2) {
+        e.target.style.backgroundColor = rightColorPen;
+      }
+    } else if (rainbow) {
+      e.target.style.backgroundColor = rainbowGenerator();
     }
   }
 }
 
-/* 
-let area = document.getElementById('canvas');
-let display = area.getElementsByClassName('grid-cell');
-canvas.addEventListener('mousedown', function () {
-  canvas.addEventListener('mousemove', drag);
-  canvas.addEventListener('mouseup', lift);
+let color = true;
+let rainbow = false;
+let eraser = false;
 
-  let isDragging = false;
+let leftColorPen = leftPick.value;
+let rightColorPen = rightPick.value;
 
-  function drag(e) {
-    isDragging = true;
-    if (determineMouse(e) === 'left') {
-      e.target.style.backgroundColor = leftColor;
-    } else if (determineMouse(e) === 'right') {
-      e.target.style.backgroundColor = rightColor;
+pickerButtons.forEach(picker => {
+  picker.addEventListener('change', pickColor, false);
+})
+
+function pickColor(e) {
+  pickerButtons.forEach(function (picker) {
+    if (picker === e.target) {
+      if (picker.id.match('cpick1')) {
+        leftColorPen = e.target.value;
+      } else if (picker.id.match('cpick2')) {
+        rightColorPen = e.target.value;
+      }
     }
-  }
+  });
+}
 
-  function lift() {
-    isDragging = false;
-    canvas.removeEventListener('mousemove', drag);
-    canvas.removeEventListener('mouseup', lift);
+let sliderActive = colorSelect.querySelector('.active');
+let sliderInactive = colorSelect.querySelector(':not(.active)');
+
+colorSlider.oninput = () => {
+  const rainbowValue = colorSlider.value;
+
+  let outputColor = `hsl(${rainbowValue},100%,50%)`;
+  sliderActive.style.backgroundColor = outputColor;
+
+  if (sliderActive.id.match('cselect1')) {
+    leftColorPen = outputColor;
+  } else {
+    rightColorPen = outputColor;
   }
-}); */
+}
+
+selectButtons.forEach(button => {
+  button.addEventListener('click', switchActive);
+})
+
+function switchActive(e) {
+  selectButtons.forEach(button => {
+    if (button === e.target) {
+      if (button.classList.contains('active')) {
+        sliderInactive = button;
+        button.classList.remove('active');
+      } else {
+        sliderActive = button;
+        button.classList.add('active');
+      }
+    } else if (button !== e.target) {
+      if (button.classList.contains('active')) {
+        sliderInactive = button;
+        button.classList.remove('active');
+      } else {
+        sliderActive = button;
+        button.classList.add('active');
+      }
+    }
+  });
+}
+
+function rainbowGenerator() {
+  let randomNumber = Math.floor(Math.random() * 359) + 1;
+  return `hsl(${randomNumber}, 100%, 50%)`;
+}
+
+colorRainbow.addEventListener('click', () => {
+  if(rainbow) {
+    rainbow = false;
+    color = true;
+    eraser = false;
+  } else {
+    rainbow = true;
+    color = false;
+    eraser = false;
+  }
+});
