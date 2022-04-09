@@ -16,6 +16,7 @@ const controlCanvas = panel.querySelector('.control#ccanvas');
 const gridContainer = controlCanvas.querySelector('#gslider');
 const gridSlider = gridContainer.querySelector('#gsize');
 const gridValue = gridContainer.querySelectorAll('span.gval');
+const clearCanvas = controlCanvas.querySelector('#clear');
 /* control color */
 const controlColor = panel.querySelector('.control#ccolor');
 const colorPicker = controlColor.querySelector('#cpicker');
@@ -135,9 +136,9 @@ let determineMouse = function (e) {
   }
 };
 
-let color = true;
-let rainbow = false;
-let eraser = false;
+let inkcolor = true;
+let inkrainbow = false;
+let inkeraser = false;
 
 let mouseEvent = false;
 
@@ -206,3 +207,12 @@ canvas.addEventListener('mousedown', function () {
     canvas.removeEventListener('mouseup', lift);
   }
 }); */
+
+clearCanvas.addEventListener('click', clearAll);
+
+function clearAll() {
+  let grid = canvas.querySelectorAll('.grid-cell');
+  grid.forEach(cell => {
+    cell.style.backgroundColor = '#fff';
+  });
+}
