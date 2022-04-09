@@ -31,7 +31,8 @@ const colorSelect = controlColor.querySelector('#cselect');
 const selectButtons = colorSelect.querySelectorAll('.btns-select');
 const colorRainbow = controlColor.querySelector('#rainbow');
 /* control tools */
-
+const controlTools = panel.querySelector('.control#ctools');
+const colorEraser = controlTools.querySelector('#eraser');
 /* canvas */
 const frame = content.querySelector('.frame');
 const canvas = frame.querySelector('#canvas');
@@ -161,6 +162,9 @@ function clickDraw(e) {
     }
   } else if (rainbow) {
     e.target.style.backgroundColor = rainbowGenerator();
+  } else if (eraser) {
+    e.target.style.backgroundColor = canvasBackground.value;
+    e.target.setAttribute('inked', false);
   }
 }
 
@@ -175,6 +179,9 @@ function clickDrawHover(e) {
       }
     } else if (rainbow) {
       e.target.style.backgroundColor = rainbowGenerator();
+    } else if (eraser) {
+      e.target.style.backgroundColor = canvasBackground.value;
+      e.target.setAttribute('inked', false);
     }
   }
 }
@@ -250,7 +257,7 @@ function rainbowGenerator() {
 }
 
 colorRainbow.addEventListener('click', () => {
-  if(rainbow) {
+  if (rainbow) {
     rainbow = false;
     color = true;
     eraser = false;
@@ -260,3 +267,15 @@ colorRainbow.addEventListener('click', () => {
     eraser = false;
   }
 });
+
+colorEraser.addEventListener('click', () => {
+  if(eraser) {
+    eraser = false;
+    color = true;
+    rainbow = false;
+  } else {
+    eraser = true;
+    color = false;
+    rainbow = false;
+  }
+})
