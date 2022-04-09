@@ -16,6 +16,8 @@ const controlCanvas = panel.querySelector('.control#ccanvas');
 const gridContainer = controlCanvas.querySelector('#gslider');
 const gridSlider = gridContainer.querySelector('#gsize');
 const gridValue = gridContainer.querySelectorAll('span.gval');
+const backgroundPicker = controlCanvas.querySelector('#bcpicker');
+const canvasBackground = backgroundPicker.querySelector('#bcpick');
 const clearCanvas = controlCanvas.querySelector('#clear');
 /* control color */
 const controlColor = panel.querySelector('.control#ccolor');
@@ -24,10 +26,10 @@ const pickerButtons = colorPicker.querySelectorAll('.picker');
 const leftPick = colorPicker.querySelector('#cpick1');
 const rightPick = colorPicker.querySelector('#cpick2');
 const colorSlider = controlColor.querySelector('#cslider');
-const select = controlColor.querySelector('#select');
-const selectButtons = select.querySelectorAll('.selector');
-const leftSelect = select.querySelector('#cselect1');
-const rightSelect = select.querySelector('#cselect2');
+const colorSelect = controlColor.querySelector('#cselect');
+const selectButtons = colorSelect.querySelectorAll('.selector');
+const leftSelect = colorSelect.querySelector('#cselect1');
+const rightSelect = colorSelect.querySelector('#cselect2');
 /* control tools */
 
 /* canvas */
@@ -67,7 +69,7 @@ function displayGrid(size) {
 
   for (let index = 0; index < (size * size); index++) {
     let cell = document.createElement('div');
-    cell.setAttribute('draggable',false);
+    cell.setAttribute('draggable', false);
     canvas.appendChild(cell).className = "grid-cell";
   };
 };
@@ -76,6 +78,29 @@ function eraseGrid() {
   let grid = canvas.querySelectorAll('.grid-cell');
   grid.forEach(box => {
     box.remove();
+  });
+}
+
+canvasBackground.addEventListener('input', (e) => {
+  let grid = canvas.querySelectorAll('.grid-cell');
+  grid.forEach(cell => {
+    cell.style.backgroundColor = e.target.value;
+  });
+}, false);
+
+canvasBackground.addEventListener('change', (e) => {
+  let grid = canvas.querySelectorAll('.grid-cell');
+  grid.forEach(cell => {
+    cell.style.backgroundColor = e.target.value;
+  });
+}, false);
+
+clearCanvas.addEventListener('click', clearAll);
+
+function clearAll() {
+  let grid = canvas.querySelectorAll('.grid-cell');
+  grid.forEach(cell => {
+    cell.style.backgroundColor = '#fff';
   });
 }
 
@@ -102,7 +127,7 @@ let sliderActive;
 
 colorSlider.oninput = () => {
   const rainbowValue = colorSlider.value;
-  sliderActive = select.querySelector('.active');
+  sliderActive = colorSelect.querySelector('.active');
   let outputColor = `hsl(${rainbowValue},100%,50%)`;
 
   sliderActive.style.backgroundColor = outputColor;
@@ -152,7 +177,7 @@ function stopMouseLeave() {
   canvas.removeEventListener('mouseleave', stopMouseLeave);
 }
 
-canvas.addEventListener('mousedown', function(e) {
+canvas.addEventListener('mousedown', function (e) {
   mouseEvent = true;
   canvas.addEventListener('mouseup', stopDragging);
   canvas.addEventListener('mouseleave', stopMouseLeave);
@@ -207,12 +232,3 @@ canvas.addEventListener('mousedown', function () {
     canvas.removeEventListener('mouseup', lift);
   }
 }); */
-
-clearCanvas.addEventListener('click', clearAll);
-
-function clearAll() {
-  let grid = canvas.querySelectorAll('.grid-cell');
-  grid.forEach(cell => {
-    cell.style.backgroundColor = '#fff';
-  });
-}
