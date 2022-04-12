@@ -170,8 +170,8 @@ function clickDraw(e) {
 
 function clickDrawHover(e) {
   if (determineMouse(e) > 0) {
+    e.target.setAttribute('inked', true);
     if (color) {
-      e.target.setAttribute('inked', true);
       if (determineMouse(e) === 1) {
         e.target.style.backgroundColor = leftColorPen;
       } else if (determineMouse(e) === 2) {
